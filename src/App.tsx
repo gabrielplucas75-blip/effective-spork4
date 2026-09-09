@@ -125,7 +125,7 @@ export default function App() {
           transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src="/hero-fallback.png"
+            src="/hero-clean.png"
             alt="Memória Luz 360 acesa"
             className="hero-media absolute left-1/2 top-0 h-full w-full -translate-x-1/2 object-cover object-center md:w-[112%]"
           />
@@ -250,7 +250,7 @@ export default function App() {
           <motion.div id="detalhes" initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }} whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 1 }} className="relative mx-auto w-full max-w-xl">
             <div className="liquid-glass rounded-[2rem] p-3">
               <div className="overflow-hidden rounded-[1.5rem]">
-                <img src="/hero-fallback.png" alt="Detalhe da Memória Luz 360" className="aspect-[4/5] w-full object-cover" />
+                <img src="/section-product.png" alt="Detalhe da Memória Luz 360" className="aspect-[4/5] w-full object-cover" />
               </div>
             </div>
             <div className="liquid-glass absolute -bottom-5 left-4 rounded-full px-4 py-2 text-xs text-white/75">4 lados • 4 histórias</div>
