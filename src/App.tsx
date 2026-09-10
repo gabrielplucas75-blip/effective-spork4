@@ -125,16 +125,15 @@ export default function App() {
           transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
         >
           <img
-            src="/hero-clean.png"
-            alt="Memória Luz 360 acesa"
+            src="/public/section-product.png"
+            alt="Detalhe da Memória Luz 360"
             className="hero-media absolute left-1/2 top-0 h-full w-full -translate-x-1/2 object-cover object-center md:w-[112%]"
           />
 
           {/* Quando tiver o vídeo real, substitua a imagem por:
           <FadingVideo
             src="/memoria-luz-hero.mp4"
-            className="hero-media absolute left-1/2 top-0 h-full w-[112%] -translate-x-1/2 object-cover object-center"
-          />
+            className="aspect-[4/5] w-full object-cover" />
           */}
         </motion.div>
 
