@@ -1,264 +1,185 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+const CHECKOUT_URL = "https://checkout.infinitepay.io/gabrielplucas-s1z/miKft8HKJN";
+const WHATSAPP_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20minha%20Mem%C3%B3ria%20Luz%20360%20e%20quero%20enviar%20minhas%204%20fotos%20para%20personaliza%C3%A7%C3%A3o.";
 
-type FadingVideoProps = {
-  src: string | string[];
-  className?: string;
-  style?: CSSProperties;
-};
-
-function FadingVideo({ src, className = "", style }: FadingVideoProps) {
-  const sources = Array.isArray(src) ? src : [src];
-  const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLVideoElement>(null);
-
-  const fadeIn = () => requestAnimationFrame(() => setVisible(true));
-
-  const onTimeUpdate = () => {
-    const video = ref.current;
-    if (!video || !Number.isFinite(video.duration)) return;
-    if (video.duration - video.currentTime <= 0.55) setVisible(false);
-  };
-
-  const onEnded = async () => {
-    const video = ref.current;
-    if (!video) return;
-    if (sources.length === 1) {
-      video.currentTime = 0;
-      try { await video.play(); fadeIn(); } catch {}
-      return;
-    }
-    setIndex((current) => (current + 1) % sources.length);
-  };
-
-  useEffect(() => {
-    setVisible(false);
-    const video = ref.current;
-    if (!video) return;
-    video.load();
-    video.play().catch(() => {});
-  }, [index]);
-
+function ArrowIcon() {
   return (
-    <video
-      ref={ref}
-      src={sources[index]}
-      autoPlay
-      muted
-      playsInline
-      preload="auto"
-      onLoadedData={fadeIn}
-      onTimeUpdate={onTimeUpdate}
-      onEnded={onEnded}
-      className={className}
-      style={{ ...style, opacity: visible ? 1 : 0, transition: "opacity 500ms ease" }}
-    />
-  );
-}
-
-function BlurText({ text, className = "" }: { text: string; className?: string }) {
-  return (
-    <div className={`flex flex-wrap justify-center gap-y-[0.1em] ${className}`}>
-      {text.split(" ").map((word, index) => (
-        <motion.span
-          key={`${word}-${index}`}
-          className="mr-[0.24em] inline-block"
-          initial={{ filter: "blur(10px)", opacity: 0, y: 40 }}
-          whileInView={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, delay: index * 0.075, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </div>
-  );
-}
-
-function ArrowUpRight() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="M7 17L17 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      <path d="M7 7h10v10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 17 17 7M8 7h9v9" />
     </svg>
   );
 }
 
-function ScrollArrow() {
+function CheckIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="M12 5v14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M7 14l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m5 12 4 4L19 6" />
     </svg>
   );
 }
 
-const reveal = {
-  initial: { filter: "blur(10px)", opacity: 0, y: 20 },
-  animate: { filter: "blur(0px)", opacity: 1, y: 0 },
-};
-
-export default function App() {
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const smoothX = useSpring(pointerX, { stiffness: 70, damping: 18 });
-  const smoothY = useSpring(pointerY, { stiffness: 70, damping: 18 });
-  const rotateY = useTransform(smoothX, [-1, 1], [-2.5, 2.5]);
-  const rotateX = useTransform(smoothY, [-1, 1], [1.6, -1.6]);
-
-  const onMouseMove = (event: React.MouseEvent<HTMLElement>) => {
-    if (window.innerWidth < 768) return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    pointerX.set(((event.clientX - rect.left) / rect.width) * 2 - 1);
-    pointerY.set(((event.clientY - rect.top) / rect.height) * 2 - 1);
-  };
-
+function App() {
   return (
-    <main className="bg-black text-white">
-      <section id="inicio" onMouseMove={onMouseMove} className="relative min-h-[100svh] overflow-hidden bg-black">
-        <motion.div
-          className="absolute inset-0 z-0"
-          style={{ rotateX, rotateY, transformPerspective: 1200 }}
-          initial={{ opacity: 0, scale: 1.035 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <img
-            src="/hero-fallback.png"
-            alt="Memória Luz 360"
-            className="aspect-[4/5] w-full object-cover" />
-
-          {/* Quando tiver o vídeo real, substitua a imagem por:
-          <FadingVideo
-            src="/memoria-luz-hero.mp4"
-            className="aspect-[4/5] w-full object-cover" />
-          */}
-        </motion.div>
-
-        <div className="hero-vignette absolute inset-0 z-[1]" />
-
-        <nav className="fixed left-0 right-0 top-4 z-50 px-4 md:px-8 lg:px-14">
-          <div className="mx-auto flex max-w-7xl items-center justify-between">
-            <a href="#inicio" className="liquid-glass rounded-full px-4 py-2.5 font-heading text-xl italic tracking-tight">
-              Memória Luz
-            </a>
-
-            <div className="liquid-glass hidden items-center gap-1 rounded-full p-1.5 md:flex">
-              {[
-                ["Como funciona", "#como-funciona"],
-                ["Veja os detalhes", "#detalhes"],
-                ["Para presentear", "#presentear"],
-                ["Dúvidas", "#duvidas"],
-              ].map(([label, href]) => (
-                <a key={label} href={href} className="rounded-full px-3 py-2 font-body text-sm font-medium text-white/85 transition hover:text-white">
-                  {label}
-                </a>
-              ))}
-            </div>
-
-            <a href="#oferta" className="liquid-glass-strong group flex min-h-12 items-center gap-2 rounded-full px-4 py-2.5 font-body text-sm font-medium">
-              <span className="hidden sm:inline">Criar a minha</span>
-              <span className="sm:hidden">Criar</span>
-              <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"><ArrowUpRight /></span>
-            </a>
-          </div>
+    <main>
+      <header className="topbar">
+        <a className="brand" href="#inicio">Memória Luz <span>360™</span></a>
+        <nav>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#presente">Para presentear</a>
+          <a href="#duvidas">Dúvidas</a>
         </nav>
+        <a className="nav-cta" href="#oferta">Criar a minha <ArrowIcon /></a>
+      </header>
 
-        <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-5 pb-20 pt-28 text-center md:px-10">
-          <motion.div
-            {...reveal}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="liquid-glass rounded-full px-4 py-2 font-body text-[10px] font-medium tracking-[0.18em] text-white/90 sm:text-xs"
-          >
-            PERSONALIZADA COM AS SUAS FOTOS
-          </motion.div>
-
-          <div className="mt-6 max-w-[980px]">
-            <BlurText
-              text="Suas melhores memórias não foram feitas para ficar esquecidas na galeria."
-              className="font-heading text-[3rem] italic leading-[0.9] tracking-[-1.5px] text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]"
-            />
+      <section id="inicio" className="hero">
+        <img src="/hero-clean.png" alt="Memória Luz 360 acesa sobre uma mesa" className="hero-image" />
+        <div className="hero-shade" />
+        <div className="hero-copy reveal">
+          <div className="eyebrow">PERSONALIZADA COM 4 FOTOS</div>
+          <h1>Suas melhores memórias não foram feitas para ficar esquecidas na galeria.</h1>
+          <p>Transforme quatro fotos especiais em uma luminária personalizada que conta a sua história em cada lado.</p>
+          <div className="hero-actions">
+            <a className="primary-btn" href="#oferta">Criar minha Memória Luz <ArrowIcon /></a>
+            <span>Feita sob encomenda • LED quente • Presente único</span>
           </div>
-
-          <motion.p
-            {...reveal}
-            transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 max-w-2xl font-body text-[15px] font-light leading-snug text-white/80 sm:text-base md:text-lg"
-          >
-            Transforme 4 fotos especiais em uma luminária personalizada que conta a sua história em cada lado.
-          </motion.p>
-
-          <motion.div {...reveal} transition={{ duration: 0.8, delay: 1.5, ease: [0.22, 1, 0.36, 1] }} className="mt-7">
-            <a href="#oferta" className="liquid-glass-strong group flex min-h-12 items-center justify-center gap-3 rounded-full px-6 py-3 font-body text-sm font-medium transition-transform duration-300 hover:scale-[1.02]">
-              Criar minha Memória Luz
-              <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"><ArrowUpRight /></span>
-            </a>
-          </motion.div>
-
-          <motion.p {...reveal} transition={{ duration: 0.8, delay: 1.7, ease: [0.22, 1, 0.36, 1] }} className="mt-4 font-body text-xs font-light text-white/60">
-            4 fotos • Iluminação LED • Feita especialmente para você
-          </motion.p>
-
-          <motion.a
-            {...reveal}
-            href="#como-funciona"
-            transition={{ duration: 0.8, delay: 2, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-6 flex flex-col items-center gap-1.5 font-body text-[11px] text-white/55 transition hover:text-white/80"
-          >
-            <span>Descubra como funciona</span>
-            <motion.span animate={{ y: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}><ScrollArrow /></motion.span>
-          </motion.a>
         </div>
       </section>
 
-      <section id="como-funciona" className="relative flex min-h-[100svh] items-center overflow-hidden bg-black px-5 py-24 md:px-12 lg:px-20">
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-white/[0.03] blur-3xl" />
-          <div className="absolute bottom-[10%] right-[5%] h-96 w-96 rounded-full bg-white/[0.025] blur-3xl" />
-        </div>
+      <section className="value-strip" aria-label="Benefícios principais">
+        <div><strong>4 fotos</strong><span>uma história em cada lado</span></div>
+        <div><strong>Luz quente</strong><span>aconchegante e decorativa</span></div>
+        <div><strong>5 a 7 dias</strong><span>prazo de produção e envio</span></div>
+        <div><strong>Presente emocional</strong><span>para momentos que importam</span></div>
+      </section>
 
-        <div className="relative mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
-          <div>
-            <motion.p initial={{ opacity: 0, y: 18, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }} className="mb-5 font-body text-xs font-medium tracking-[0.16em] text-white/55">
-              // MEMÓRIAS TRANSFORMADAS EM LUZ
-            </motion.p>
-
-            <motion.h2 initial={{ opacity: 0, y: 26, filter: "blur(9px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.85 }} className="max-w-3xl font-heading text-5xl italic leading-[0.92] tracking-[-1.5px] md:text-7xl">
-              Algumas fotos merecem mais do que ficar esquecidas na galeria.
-            </motion.h2>
-
-            <motion.p initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, delay: 0.12 }} className="mt-7 max-w-2xl font-body text-base font-light leading-relaxed text-white/72 md:text-lg">
-              Uma viagem inesquecível. Um momento com quem você ama. Seu pet. Sua família. Algumas fotografias carregam histórias inteiras — e agora elas podem fazer parte da sua casa.
-            </motion.p>
-
-            <motion.p initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-5 max-w-2xl font-body text-base font-light leading-relaxed text-white/88">
-              Escolha quatro dessas lembranças e transforme-as em uma luminária personalizada criada especialmente para contar a sua história.
-            </motion.p>
-
-            <motion.div id="oferta" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, delay: 0.28 }} className="mt-8 flex flex-wrap items-center gap-4">
-              <a href="#personalizar" className="liquid-glass-strong group flex min-h-12 items-center gap-3 rounded-full px-6 py-3 font-body text-sm font-medium transition-transform hover:scale-[1.02]">
-                Quero criar a minha
-                <span className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"><ArrowUpRight /></span>
-              </a>
-              <span className="font-body text-sm text-white/45">A partir de R$ 249,90</span>
-            </motion.div>
+      <section id="como-funciona" className="story section-pad">
+        <div className="section-copy">
+          <span className="section-kicker">MEMÓRIAS TRANSFORMADAS EM LUZ</span>
+          <h2>Uma lembrança que muda quando a luz acende.</h2>
+          <p>Durante o dia, uma peça elegante de decoração. À noite, suas fotos ganham vida com uma iluminação quente e intimista.</p>
+          <div className="steps">
+            <div><b>01</b><span><strong>Faça sua compra</strong>Finalize o pedido pelo checkout de forma rápida e segura.</span></div>
+            <div><b>02</b><span><strong>Envie 4 fotos pelo WhatsApp</strong>Após a compra, envie as quatro imagens pelo nosso WhatsApp para iniciarmos a personalização.</span></div>
+            <div><b>03</b><span><strong>Nós produzimos sua peça</strong>Sua Memória Luz é personalizada e preparada para envio em 5 a 7 dias.</span></div>
           </div>
+        </div>
+        <div className="media-card portrait-right">
+          <img src="/public/section-product.png" alt="Memória Luz 360 com fotografias iluminadas" />
+          <div className="floating-note">4 lados • 4 histórias • 1 presente inesquecível</div>
+        </div>
+      </section>
 
-          <motion.div id="detalhes" initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }} whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 1 }} className="relative mx-auto w-full max-w-xl">
-            <div className="liquid-glass rounded-[2rem] p-3">
-              <div className="overflow-hidden rounded-[1.5rem]">
-                <img src="/section-product.png" alt="Detalhe da Memória Luz 360" className="aspect-[4/5] w-full object-cover" />
-              </div>
+      <section id="presente" className="occasions section-pad">
+        <div className="center-heading">
+          <span className="section-kicker">UM PRESENTE QUE NÃO PARECE GENÉRICO</span>
+          <h2>Feita para quem tem uma história para contar.</h2>
+          <p>Casais, família, pets, aniversários e datas especiais. Você escolhe as lembranças; a Memória Luz transforma tudo em uma peça única.</p>
+        </div>
+        <div className="occasion-grid">
+          {[
+            ["♡", "Casais", "Viagens, pedidos, casamento e momentos a dois."],
+            ["⌂", "Família", "Fotos que atravessam gerações e merecem ficar por perto."],
+            ["✦", "Pets", "Uma forma carinhosa de eternizar quem faz parte da casa."],
+            ["⌁", "Presentes", "Aniversários, Dia das Mães, Dia dos Pais e outras datas."],
+          ].map(([icon, title, text]) => (
+            <article key={title} className="occasion-card">
+              <span className="occasion-icon">{icon}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="details section-pad">
+        <div className="details-image">
+          <img src="/product-details-test.webp" alt="Detalhes da Memória Luz" />
+        </div>
+        <div className="details-copy">
+          <span className="section-kicker">CRIADA PARA EMOCIONAR</span>
+          <h2>O valor não está só na luz. Está no que ela faz você lembrar.</h2>
+          <p>A Memória Luz 360 foi pensada para transformar fotos do celular em um objeto físico que participa da decoração e da rotina.</p>
+          <ul>
+            <li><CheckIcon /><span><strong>Personalização com 4 fotos</strong> — uma em cada face.</span></li>
+            <li><CheckIcon /><span><strong>Iluminação LED quente</strong> — feita para criar clima, não estourar o ambiente.</span></li>
+            <li><CheckIcon /><span><strong>Produção sob encomenda</strong> — cada peça é preparada individualmente.</span></li>
+            <li><CheckIcon /><span><strong>Presente com significado</strong> — muito além de mais um item comprado de última hora.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="quote-band">
+        <p>“Algumas fotos não deveriam viver apenas na galeria do celular.”</p>
+      </section>
+
+      <section id="oferta" className="offer section-pad">
+        <div className="offer-card">
+          <div className="offer-copy">
+            <span className="section-kicker">SUA MEMÓRIA LUZ 360™</span>
+            <h2>Quatro fotos. Uma peça feita especialmente para você.</h2>
+            <p>Você escolhe os momentos. Nós transformamos em uma luminária personalizada pronta para presentear ou deixar sua casa mais sua.</p>
+            <div className="price"><small>por</small><strong>R$ 249,90</strong><span>+ frete</span></div>
+            <div className="offer-badges">
+              <span><CheckIcon /> 4 fotos personalizadas</span>
+              <span><CheckIcon /> iluminação LED</span>
+              <span><CheckIcon /> envio das fotos pelo WhatsApp após a compra</span>
+              <span><CheckIcon /> produção e envio em 5 a 7 dias</span>
             </div>
-            <div className="liquid-glass absolute -bottom-5 left-4 rounded-full px-4 py-2 text-xs text-white/75">4 lados • 4 histórias</div>
-          </motion.div>
+            <a className="primary-btn big" href={CHECKOUT_URL}>Comprar agora <ArrowIcon /></a>
+            <a className="whatsapp-link" href={WHATSAPP_URL} target="_blank" rel="noreferrer">Já comprou? Envie suas 4 fotos pelo WhatsApp →</a>
+            <small className="checkout-note">Pagamento pelo checkout da InfinitePay. Após concluir a compra, envie as 4 fotos pelo WhatsApp para começarmos a personalização.</small>
+          </div>
+          <img src="/hero-clean.png" alt="Memória Luz 360 personalizada" />
         </div>
-
-        <span id="presentear" className="absolute bottom-0" />
-        <span id="duvidas" className="absolute bottom-0" />
-        <span id="personalizar" className="absolute bottom-0" />
       </section>
+
+      <section id="duvidas" className="faq section-pad">
+        <div className="center-heading">
+          <span className="section-kicker">DÚVIDAS FREQUENTES</span>
+          <h2>Antes de criar a sua.</h2>
+        </div>
+        <div className="faq-list">
+          <details open>
+            <summary>Como envio minhas 4 fotos?</summary>
+            <p>Primeiro você finaliza a compra. Depois da confirmação, envie as 4 fotos pelo nosso WhatsApp para começarmos a personalização.</p>
+          </details>
+          <details>
+            <summary>Posso escolher fotos diferentes em cada lado?</summary>
+            <p>Sim. A proposta da Memória Luz 360 é usar quatro fotos, uma para cada face da luminária.</p>
+          </details>
+          <details>
+            <summary>A luminária já vai com iluminação?</summary>
+            <p>Sim. A comunicação da página considera iluminação LED quente integrada ao produto.</p>
+          </details>
+          <details>
+            <summary>Qual é o prazo de produção e envio?</summary>
+            <p>O prazo informado para produção e envio da sua Memória Luz 360 é de 5 a 7 dias.</p>
+          </details>
+          <details>
+            <summary>Preciso enviar as fotos antes de pagar?</summary>
+            <p>Não. Você conclui a compra primeiro e envia as imagens pelo WhatsApp logo depois.</p>
+          </details>
+        </div>
+      </section>
+
+      <section className="final-cta">
+        <img src="/public/section-product.png" alt="Memória Luz 360 acesa em ambiente aconchegante" />
+        <div className="final-overlay" />
+        <div>
+          <span className="section-kicker">NÃO DEIXE ESSA FOTO SER SÓ MAIS UMA NA GALERIA</span>
+          <h2>Transforme lembranças em luz.</h2>
+          <a className="primary-btn" href={CHECKOUT_URL}>Comprar minha Memória Luz <ArrowIcon /></a>
+        </div>
+      </section>
+
+      <footer>
+        <a className="brand" href="#inicio">Memória Luz <span>360™</span></a>
+        <p>Feita para iluminar histórias.</p>
+        <small>© 2026 Memória Luz 360. Todos os direitos reservados.</small>
+      </footer>
+
+      <a className="mobile-sticky" href={CHECKOUT_URL}>Comprar • R$ 249,90 <ArrowIcon /></a>
     </main>
   );
 }
+
+export default App;
