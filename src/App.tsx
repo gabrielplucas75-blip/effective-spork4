@@ -1,5 +1,6 @@
 const CHECKOUT_URL = "https://checkout.infinitepay.io/gabrielplucas-s1z/miKft8HKJN";
 const WHATSAPP_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20minha%20Mem%C3%B3ria%20Luz%20360%20e%20quero%20enviar%20minhas%204%20fotos%20para%20personaliza%C3%A7%C3%A3o.";
+const CONTACT_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Mem%C3%B3ria%20Luz%20360%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.";
 
 function ArrowIcon() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <a href="#como-funciona">Como funciona</a>
           <a href="#presente">Para presentear</a>
           <a href="#duvidas">Dúvidas</a>
+          <a href={CONTACT_URL} target="_blank" rel="noreferrer">Fale conosco</a>
         </nav>
         <a className="nav-cta" href="#oferta">Criar a minha <ArrowIcon /></a>
       </header>
@@ -125,6 +127,7 @@ function App() {
               <span><CheckIcon /> produção e envio em 5 a 7 dias</span>
             </div>
             <a className="primary-btn big" href={CHECKOUT_URL}>Comprar agora <ArrowIcon /></a>
+            <a className="whatsapp-link" href={CONTACT_URL} target="_blank" rel="noreferrer">Fale conosco pelo WhatsApp →</a>
             <a className="whatsapp-link" href={WHATSAPP_URL} target="_blank" rel="noreferrer">Já comprou? Envie suas 4 fotos pelo WhatsApp →</a>
             <small className="checkout-note">Pagamento pelo checkout da InfinitePay. Após concluir a compra, envie as 4 fotos pelo WhatsApp para começarmos a personalização.</small>
           </div>
@@ -168,12 +171,13 @@ function App() {
           <span className="section-kicker">NÃO DEIXE ESSA FOTO SER SÓ MAIS UMA NA GALERIA</span>
           <h2>Transforme lembranças em luz.</h2>
           <a className="primary-btn" href={CHECKOUT_URL}>Comprar minha Memória Luz <ArrowIcon /></a>
+          <a className="whatsapp-link" href={CONTACT_URL} target="_blank" rel="noreferrer">Fale conosco pelo WhatsApp →</a>
         </div>
       </section>
 
       <footer>
         <a className="brand" href="#inicio">Memória Luz <span>360™</span></a>
-        <p>Feita para iluminar histórias.</p>
+        <p><a href={CONTACT_URL} target="_blank" rel="noreferrer">Fale conosco pelo WhatsApp</a></p>
         <small>© 2026 Memória Luz 360. Todos os direitos reservados.</small>
       </footer>
 
