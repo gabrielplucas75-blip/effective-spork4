@@ -21,6 +21,46 @@ function CheckIcon() {
 function App() {
   return (
     <main>
+      <style>{`
+        .hero-mobile-offer { display: none; }
+        .trust-proof { padding-top: 20px; padding-bottom: 115px; }
+        .trust-proof .center-heading { margin-bottom: 38px; }
+        .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .trust-card { padding: 26px; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012)); }
+        .trust-card .trust-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 26px; border-radius: 50%; border: 1px solid rgba(232,160,84,.28); color: #e8a054; font-size: 1rem; }
+        .trust-card h3 { margin: 0 0 9px; font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 500; letter-spacing: -.025em; }
+        .trust-card p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
+        .trust-note { max-width: 760px; margin: 26px auto 0; text-align: center; color: rgba(245,231,210,.52); font-size: .78rem; line-height: 1.55; }
+
+        @media (max-width: 980px) {
+          .trust-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+          .hero { min-height: 100svh; }
+          .hero-image { object-position: 29% center; }
+          .hero-shade { background: linear-gradient(180deg, rgba(5,3,2,.06) 0%, rgba(5,3,2,.18) 28%, rgba(5,3,2,.72) 55%, #080604 82%, #080604 100%); }
+          .hero-copy { width: calc(100% - 30px); padding: 0 0 86px; }
+          .eyebrow { padding: 7px 10px; border: 1px solid rgba(240,194,141,.2); border-radius: 999px; background: rgba(15,10,7,.38); backdrop-filter: blur(8px); font-size: .62rem; letter-spacing: .14em; }
+          .hero h1 { max-width: 100%; margin: 14px 0 14px; font-size: clamp(2.75rem, 12.5vw, 4.15rem); line-height: .92; }
+          .hero-copy > p { max-width: 94%; font-size: .93rem; line-height: 1.5; }
+          .hero-actions { width: 100%; margin-top: 20px; gap: 9px; }
+          .hero-actions .primary-btn { width: 100%; min-height: 54px; }
+          .hero-actions > span { display: none; }
+          .hero-mobile-offer { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; margin-top: 10px; padding: 12px 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 16px; background: rgba(12,9,7,.56); backdrop-filter: blur(14px); }
+          .hero-mobile-offer > div { display: flex; flex-direction: column; gap: 2px; }
+          .hero-mobile-offer small { color: #e8a054; font-size: .62rem; font-weight: 700; letter-spacing: .1em; }
+          .hero-mobile-offer strong { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 500; }
+          .hero-mobile-offer span { color: rgba(255,255,255,.58); font-size: .68rem; text-align: right; line-height: 1.35; }
+          .trust-proof { width: calc(100% - 32px); padding-top: 20px; padding-bottom: 82px; }
+          .trust-proof .center-heading { margin-bottom: 28px; }
+          .trust-proof .center-heading h2 { font-size: clamp(2.65rem, 12vw, 3.7rem); }
+          .trust-card { padding: 22px; }
+          .trust-card .trust-icon { margin-bottom: 20px; }
+          .trust-note { margin-top: 20px; padding: 0 8px; }
+        }
+      `}</style>
+
       <header className="topbar">
         <a className="brand" href="#inicio">Memória Luz <span>360™</span></a>
         <nav>
@@ -42,6 +82,13 @@ function App() {
           <div className="hero-actions">
             <a className="primary-btn" href="#oferta">Criar minha Memória Luz <ArrowIcon /></a>
             <span>Feita sob encomenda • LED quente • Presente único</span>
+          </div>
+          <div className="hero-mobile-offer">
+            <div>
+              <small>10% OFF NO PIX</small>
+              <strong>R$ 224,91</strong>
+            </div>
+            <span>ou até 12x de<br /><strong style={{ fontFamily: "inherit", fontSize: "inherit", fontWeight: 600 }}>R$ 24,99</strong></span>
           </div>
         </div>
       </section>
@@ -111,6 +158,32 @@ function App() {
 
       <section className="quote-band">
         <p>“Algumas fotos não deveriam viver apenas na galeria do celular.”</p>
+      </section>
+
+      <section className="trust-proof section-pad" aria-label="Confiança na compra">
+        <div className="center-heading">
+          <span className="section-kicker">COMPRA SIMPLES, PROCESSO CLARO</span>
+          <h2>Você sabe exatamente o que acontece depois do clique.</h2>
+          <p>Sem inventar depoimentos: enquanto as primeiras avaliações reais chegam, destacamos o que já é concreto na experiência de compra.</p>
+        </div>
+        <div className="trust-grid">
+          <article className="trust-card">
+            <div className="trust-icon">✓</div>
+            <h3>Checkout seguro</h3>
+            <p>O pagamento é concluído pelo checkout da InfinitePay, com Pix e cartão disponíveis.</p>
+          </article>
+          <article className="trust-card">
+            <div className="trust-icon">↗</div>
+            <h3>Atendimento direto</h3>
+            <p>Depois da compra, você envia as 4 fotos e fala diretamente conosco pelo WhatsApp.</p>
+          </article>
+          <article className="trust-card">
+            <div className="trust-icon">✦</div>
+            <h3>Feita sob encomenda</h3>
+            <p>Cada peça é personalizada individualmente, com produção e envio em 5 a 7 dias.</p>
+          </article>
+        </div>
+        <p className="trust-note">Quando você tiver avaliações reais de clientes, substituímos esta área por depoimentos com nome, foto e imagem da peça — sem usar avaliações fictícias.</p>
       </section>
 
       <section id="oferta" className="offer section-pad">
