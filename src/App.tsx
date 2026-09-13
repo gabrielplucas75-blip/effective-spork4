@@ -119,9 +119,10 @@ function App() {
             <span className="section-kicker">SUA MEMÓRIA LUZ 360™</span>
             <h2>Quatro fotos. Uma peça feita especialmente para você.</h2>
             <p>Você escolhe os momentos. Nós transformamos em uma luminária personalizada pronta para presentear ou deixar sua casa mais sua.</p>
-            <div className="price"><small>por</small><strong>R$ 249,90</strong><span>+ frete</span></div>
-            <p style={{ margin: "-8px 0 6px", color: "#f0c28d", fontWeight: 600 }}>R$ 224,91 no Pix — 10% OFF</p>
-            <p style={{ margin: "0 0 24px", color: "rgba(255,255,255,.62)" }}>ou até 12x de R$ 24,99 no cartão*</p>
+            <div style={{ marginTop: "18px", marginBottom: "8px", color: "#f0c28d", fontWeight: 700, letterSpacing: ".08em", fontSize: ".78rem" }}>10% OFF NO PIX</div>
+            <div className="price" style={{ margin: "0 0 8px" }}><small>por</small><strong>R$ 224,91</strong><span>no Pix</span></div>
+            <p style={{ margin: "0 0 6px", color: "rgba(255,255,255,.58)", fontSize: ".95rem" }}>Preço normal: <strong style={{ color: "rgba(255,255,255,.78)", fontWeight: 500 }}>R$ 249,90 + frete</strong></p>
+            <p style={{ margin: "0 0 24px", color: "rgba(255,255,255,.68)" }}>ou até 12x de <strong style={{ color: "#fff", fontWeight: 600 }}>R$ 24,99</strong> no cartão*</p>
             <div className="offer-badges">
               <span><CheckIcon /> 4 fotos personalizadas</span>
               <span><CheckIcon /> iluminação LED</span>
