@@ -141,7 +141,7 @@ function App() {
 
       <section className="details section-pad">
         <div className="details-image">
-          <img src="/product-details-test.webp" alt="Detalhes da Memória Luz" />
+          <img src="/hero-fallback.png" alt="Memória Luz 360 em destaque" />
         </div>
         <div className="details-copy">
           <span className="section-kicker">CRIADA PARA EMOCIONAR</span>
