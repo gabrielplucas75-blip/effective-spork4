@@ -181,7 +181,9 @@ function App() {
         <small>© 2026 Memória Luz 360. Todos os direitos reservados.</small>
       </footer>
 
-      <a className="mobile-sticky" href={CHECKOUT_URL}>Comprar • R$ 249,90 <ArrowIcon /></a>
+      <a className="mobile-sticky" href={CHECKOUT_URL}>Comprar • R$ 249,90
+R$ 224,91 sem Pix — 10% de desconto
+ou até 12x de R$ 24,99 no cartão* <ArrowIcon /></a>
     </main>
   );
 }
