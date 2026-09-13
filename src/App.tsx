@@ -120,6 +120,8 @@ function App() {
             <h2>Quatro fotos. Uma peça feita especialmente para você.</h2>
             <p>Você escolhe os momentos. Nós transformamos em uma luminária personalizada pronta para presentear ou deixar sua casa mais sua.</p>
             <div className="price"><small>por</small><strong>R$ 249,90</strong><span>+ frete</span></div>
+            <p style={{ margin: "-8px 0 6px", color: "#f0c28d", fontWeight: 600 }}>R$ 224,91 no Pix — 10% OFF</p>
+            <p style={{ margin: "0 0 24px", color: "rgba(255,255,255,.62)" }}>ou até 12x de R$ 24,99 no cartão*</p>
             <div className="offer-badges">
               <span><CheckIcon /> 4 fotos personalizadas</span>
               <span><CheckIcon /> iluminação LED</span>
@@ -129,7 +131,7 @@ function App() {
             <a className="primary-btn big" href={CHECKOUT_URL}>Comprar agora <ArrowIcon /></a>
             <a className="whatsapp-link" href={CONTACT_URL} target="_blank" rel="noreferrer">Fale conosco pelo WhatsApp →</a>
             <a className="whatsapp-link" href={WHATSAPP_URL} target="_blank" rel="noreferrer">Já comprou? Envie suas 4 fotos pelo WhatsApp →</a>
-            <small className="checkout-note">Pagamento pelo checkout da InfinitePay. Após concluir a compra, envie as 4 fotos pelo WhatsApp para começarmos a personalização.</small>
+            <small className="checkout-note">*Parcelamento com acréscimos da operadora. Pagamento pelo checkout da InfinitePay. Após concluir a compra, envie as 4 fotos pelo WhatsApp para começarmos a personalização.</small>
           </div>
           <img src="/hero-clean.png" alt="Memória Luz 360 personalizada" />
         </div>
@@ -181,9 +183,7 @@ function App() {
         <small>© 2026 Memória Luz 360. Todos os direitos reservados.</small>
       </footer>
 
-      <a className="mobile-sticky" href={CHECKOUT_URL}>Comprar • R$ 249,90
-R$ 224,91 sem Pix — 10% de desconto
-ou até 12x de R$ 24,99 no cartão* <ArrowIcon /></a>
+      <a className="mobile-sticky" href={CHECKOUT_URL}>Comprar agora • R$ 224,91 no Pix <ArrowIcon /></a>
     </main>
   );
 }
