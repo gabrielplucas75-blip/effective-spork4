@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const CHECKOUT_URL = "https://checkout.infinitepay.io/gabrielplucas-s1z/miKft8HKJN";
 const WHATSAPP_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20minha%20Mem%C3%B3ria%20Luz%20360%20e%20quero%20enviar%20minhas%204%20fotos%20para%20personaliza%C3%A7%C3%A3o.";
 const CONTACT_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Mem%C3%B3ria%20Luz%20360%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.";
@@ -19,6 +21,27 @@ function CheckIcon() {
 }
 
 function App() {
+  const [detailsVideo, setDetailsVideo] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    fetch("/memoria-luz-video.mp4")
+      .then((response) => response.text())
+      .then((base64) => {
+        if (active && base64.trim()) {
+          setDetailsVideo(`data:video/mp4;base64,${base64.trim()}`);
+        }
+      })
+      .catch(() => {
+        // Mantém a imagem de fallback caso o vídeo não carregue.
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <main>
       <style>{`
@@ -31,6 +54,7 @@ function App() {
         .trust-card h3 { margin: 0 0 9px; font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 500; letter-spacing: -.025em; }
         .trust-card p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
         .trust-note { max-width: 760px; margin: 26px auto 0; text-align: center; color: rgba(245,231,210,.52); font-size: .78rem; line-height: 1.55; }
+        .details-video { width: 100%; aspect-ratio: 9 / 16; max-height: 760px; object-fit: cover; border-radius: 28px; border: 1px solid var(--line); background: #0d0907; }
 
         @media (max-width: 980px) {
           .trust-grid { grid-template-columns: 1fr; }
@@ -58,6 +82,7 @@ function App() {
           .trust-card { padding: 22px; }
           .trust-card .trust-icon { margin-bottom: 20px; }
           .trust-note { margin-top: 20px; padding: 0 8px; }
+          .details-video { max-height: 620px; border-radius: 22px; }
         }
       `}</style>
 
@@ -141,7 +166,11 @@ function App() {
 
       <section className="details section-pad">
         <div className="details-image">
-          <img src="/hero-fallback.png" alt="Memória Luz 360 em destaque" />
+          {detailsVideo ? (
+            <video className="details-video" src={detailsVideo} autoPlay muted loop playsInline preload="metadata" aria-label="Memória Luz 360 em funcionamento" />
+          ) : (
+            <img src="/hero-fallback.png" alt="Memória Luz 360 em destaque" />
+          )}
         </div>
         <div className="details-copy">
           <span className="section-kicker">CRIADA PARA EMOCIONAR</span>
