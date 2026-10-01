@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const CHECKOUT_URL = "https://checkout.infinitepay.io/gabrielplucas-s1z/miKft8HKJN";
+const CHECKOUT_URL = "https://checkout.infinitepay.io/gabrielplucas-s1z?lenc=G54AAGTiXDeyxmihDTiqdAMZyCzqG_D5z18nB-yHpK2tFQdREnqgERfoxkp5cHd00YfF4uVlq1rmmkESlLqa4zndzU1i7DffBszU-VOnE_B4Smb4_WSuCoplB7ICtZiQF4fldTouiyvruMhlFvyx50_JqZbdAJxTLC0jYy1OWzVi.v1.883676e8a16ebce6";
 const WHATSAPP_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20minha%20Mem%C3%B3ria%20Luz%20360%20e%20quero%20enviar%20minhas%204%20fotos%20para%20personaliza%C3%A7%C3%A3o.";
 const CONTACT_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Mem%C3%B3ria%20Luz%20360%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.";
 const DETAILS_VIDEO_PARTS = [
