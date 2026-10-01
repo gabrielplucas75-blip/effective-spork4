@@ -9,7 +9,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
     <title>Memória Luz 360</title>
-  </head>
+  <!-- Meta Pixel - Memória Luz 360 -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2689982914751225');
+fbq('track', 'PageView');
+document.addEventListener('click', function (ev) {
+  var a = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+  if (!a) return;
+  var href = a.getAttribute('href') || '';
+  if (/checkout\.infinitepay\.io/i.test(href)) {
+    fbq('track', 'InitiateCheckout', { value: 224.91, currency: 'BRL', content_name: 'Memória Luz 360' });
+  } else if (/wa\.me|api\.whatsapp\.com|whatsapp:\/\//i.test(href)) {
+    var comprou = /comprar|compra/i.test(decodeURIComponent(href));
+    fbq('track', 'Contact', { content_name: comprou ? 'WhatsApp pos-compra' : 'WhatsApp duvida' });
+  }
+}, true);
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2689982914751225&ev=PageView&noscript=1"/></noscript>
+<!-- Fim Meta Pixel -->
+</head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
