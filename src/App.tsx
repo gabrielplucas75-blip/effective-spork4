@@ -117,7 +117,7 @@ function App() {
           <p>Transforme quatro fotos especiais em uma luminária personalizada que conta a sua história em cada lado.</p>
           <div className="hero-actions">
             <a className="primary-btn" href="#oferta">Criar minha Memória Luz <ArrowIcon /></a>
-            <span>Feita sob encomenda • LED quente • Presente único</span>
+            <span>Frete grátis • R$ 224,91 no Pix ou 12x de R$ 24,99</span>
           </div>
           <div className="hero-mobile-offer">
             <div>
@@ -133,7 +133,7 @@ function App() {
         <div><strong>4 fotos</strong><span>uma história em cada lado</span></div>
         <div><strong>Luz quente</strong><span>aconchegante e decorativa</span></div>
         <div><strong>5 a 7 dias</strong><span>prazo de produção e envio</span></div>
-        <div><strong>Presente emocional</strong><span>para momentos que importam</span></div>
+        <div><strong>Frete grátis</strong><span>direto na sua casa</span></div>
       </section>
 
       <section id="como-funciona" className="story section-pad">
@@ -203,6 +203,8 @@ function App() {
           <ul>
             <li><CheckIcon /><span><strong>Personalização com 4 fotos</strong> — uma em cada face.</span></li>
             <li><CheckIcon /><span><strong>Iluminação LED quente</strong> — feita para criar clima, não estourar o ambiente.</span></li>
+            <li><CheckIcon /><span><strong>25 × 20 cm em PETG</strong> — tamanho ideal para mesa, rack ou cabeceira.</span></li>
+            <li><CheckIcon /><span><strong>Pronta para usar</strong> — liga na tomada e tem botão de liga/desliga.</span></li>
             <li><CheckIcon /><span><strong>Produção sob encomenda</strong> — cada peça é preparada individualmente.</span></li>
             <li><CheckIcon /><span><strong>Presente com significado</strong> — muito além de mais um item comprado de última hora.</span></li>
           </ul>
@@ -217,7 +219,7 @@ function App() {
         <div className="center-heading">
           <span className="section-kicker">COMPRA SIMPLES, PROCESSO CLARO</span>
           <h2>Você sabe exatamente o que acontece depois do clique.</h2>
-          <p>Sem inventar depoimentos: enquanto as primeiras avaliações reais chegam, destacamos o que já é concreto na experiência de compra.</p>
+          <p>Do pagamento à entrega, você acompanha tudo diretamente com a gente pelo WhatsApp.</p>
         </div>
         <div className="trust-grid">
           <article className="trust-card">
@@ -236,7 +238,7 @@ function App() {
             <p>Cada peça é personalizada individualmente, com produção e envio em 5 a 7 dias.</p>
           </article>
         </div>
-        <p className="trust-note">Quando você tiver avaliações reais de clientes, substituímos esta área por depoimentos com nome, foto e imagem da peça — sem usar avaliações fictícias.</p>
+        <p className="trust-note">Frete grátis. Se a sua peça chegar danificada, é só nos avisar pelo WhatsApp em até 7 dias úteis após o recebimento.</p>
       </section>
 
       <section id="oferta" className="offer section-pad">
@@ -247,11 +249,13 @@ function App() {
             <p>Você escolhe os momentos. Nós transformamos em uma luminária personalizada pronta para presentear ou deixar sua casa mais sua.</p>
             <div style={{ marginTop: "18px", marginBottom: "8px", color: "#f0c28d", fontWeight: 700, letterSpacing: ".08em", fontSize: ".78rem" }}>10% OFF NO PIX</div>
             <div className="price" style={{ margin: "0 0 8px" }}><small>por</small><strong>R$ 224,91</strong><span>no Pix</span></div>
-            <p style={{ margin: "0 0 6px", color: "rgba(255,255,255,.58)", fontSize: ".95rem" }}>Preço normal: <strong style={{ color: "rgba(255,255,255,.78)", fontWeight: 500 }}>R$ 249,90 + frete</strong></p>
+            <p style={{ margin: "0 0 6px", color: "rgba(255,255,255,.58)", fontSize: ".95rem" }}>Preço normal: <strong style={{ color: "rgba(255,255,255,.78)", fontWeight: 500 }}>R$ 249,90</strong> • frete grátis</p>
             <p style={{ margin: "0 0 24px", color: "rgba(255,255,255,.68)" }}>ou até 12x de <strong style={{ color: "#fff", fontWeight: 600 }}>R$ 24,99</strong> no cartão*</p>
             <div className="offer-badges">
               <span><CheckIcon /> 4 fotos personalizadas</span>
-              <span><CheckIcon /> iluminação LED</span>
+              <span><CheckIcon /> iluminação LED quente</span>
+              <span><CheckIcon /> 25 × 20 cm, liga na tomada</span>
+              <span><CheckIcon /> frete grátis</span>
               <span><CheckIcon /> envio das fotos pelo WhatsApp após a compra</span>
               <span><CheckIcon /> produção e envio em 5 a 7 dias</span>
             </div>
@@ -280,11 +284,23 @@ function App() {
           </details>
           <details>
             <summary>A luminária já vai com iluminação?</summary>
-            <p>Sim. A comunicação da página considera iluminação LED quente integrada ao produto.</p>
+            <p>Sim. Ela já vem com iluminação LED quente integrada. É só ligar na tomada e usar o botão de liga/desliga.</p>
           </details>
           <details>
             <summary>Qual é o prazo de produção e envio?</summary>
             <p>O prazo informado para produção e envio da sua Memória Luz 360 é de 5 a 7 dias.</p>
+          </details>
+          <details>
+            <summary>Qual é o tamanho e o material?</summary>
+            <p>A Memória Luz 360 tem 25 × 20 cm e é produzida em PETG, um material resistente e durável.</p>
+          </details>
+          <details>
+            <summary>O frete é pago à parte?</summary>
+            <p>Não. O frete é grátis, você não paga nada a mais pela entrega.</p>
+          </details>
+          <details>
+            <summary>E se a peça chegar danificada?</summary>
+            <p>Avise a gente pelo WhatsApp em até 7 dias úteis após o recebimento, com fotos da peça e da embalagem, que resolvemos com você. Por ser um produto personalizado, a troca vale apenas para danos no recebimento.</p>
           </details>
           <details>
             <summary>Preciso enviar as fotos antes de pagar?</summary>
@@ -307,7 +323,7 @@ function App() {
       <footer>
         <a className="brand" href="#inicio">Memória Luz <span>360™</span></a>
         <p><a href={CONTACT_URL} target="_blank" rel="noreferrer">Fale conosco pelo WhatsApp</a></p>
-        <small>© 2026 Memória Luz 360. Todos os direitos reservados.</small>
+        <small>© 2026 Memória Luz 360 • CNPJ 65.151.817/0001-06. Todos os direitos reservados.</small>
       </footer>
 
       <a className="mobile-sticky" href={CHECKOUT_URL}>Comprar agora • R$ 224,91 no Pix <ArrowIcon /></a>
