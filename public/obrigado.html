@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#000000" />
+<meta name="robots" content="noindex" />
+<title>Pedido confirmado | Memória Luz 360</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+         background: #000; color: #f5f1ea; font-family: 'Barlow', sans-serif; font-weight: 300; }
+  main { max-width: 520px; width: 100%; text-align: center; }
+  .check { width: 64px; height: 64px; border-radius: 50%; border: 1px solid #e8c37a; color: #e8c37a;
+           display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 28px; }
+  h1 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: clamp(2.2rem, 7vw, 3rem); line-height: 1.1; margin-bottom: 16px; }
+  h1 em { color: #e8c37a; }
+  p { font-size: 1.05rem; line-height: 1.6; color: #cfc8bc; margin-bottom: 14px; }
+  .steps { text-align: left; background: #111; border: 1px solid #222; border-radius: 14px; padding: 20px 22px; margin: 26px 0; }
+  .steps li { margin: 8px 0 8px 20px; line-height: 1.5; color: #e6e0d6; }
+  .btn { display: block; width: 100%; padding: 16px 20px; border-radius: 999px; background: #25d366; color: #000;
+         font-weight: 600; font-size: 1.05rem; text-decoration: none; margin-bottom: 12px; }
+  .btn:hover { filter: brightness(1.05); }
+  .link { color: #e8c37a; font-size: .95rem; }
+  .muted { font-size: .85rem; color: #8a8478; margin-top: 22px; }
+</style>
+<!-- Meta Pixel - Memória Luz 360 -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2689982914751225');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2689982914751225&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<main>
+  <div class="check">&#10003;</div>
+  <h1>Pedido <em>confirmado</em>!</h1>
+  <p>Obrigado por escolher a Memória Luz 360. Agora falta só um passo para a gente começar a produzir a sua luminária.</p>
+  <ol class="steps">
+    <li>Clique no botão abaixo para abrir o WhatsApp.</li>
+    <li>Envie as <strong>4 fotos</strong> que você quer na luminária.</li>
+    <li>A gente confirma a arte com você antes de produzir.</li>
+  </ol>
+  <a class="btn" id="wa" href="https://wa.me/5511973740613?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20minha%20Mem%C3%B3ria%20Luz%20360%20e%20quero%20enviar%20minhas%204%20fotos%20para%20personaliza%C3%A7%C3%A3o.">Enviar minhas 4 fotos no WhatsApp</a>
+  <a class="link" id="receipt" href="#" target="_blank" rel="noopener" style="display:none">Ver comprovante de pagamento</a>
+  <p class="muted">Se tiver qualquer dúvida, é só chamar no mesmo WhatsApp.</p>
+</main>
+<script>
+(function () {
+  var HANDLE = 'gabrielplucas-s1z';
+  var PRECO_CARTAO = 249.90, PRECO_PIX = 224.91;
+  var q = new URLSearchParams(location.search);
+  var tx = q.get('transaction_nsu'), slug = q.get('slug'), order = q.get('order_nsu');
+  var method = q.get('capture_method');
+  var receipt = q.get('receipt_url');
+
+  if (receipt && /^https:\/\//.test(receipt)) {
+    var r = document.getElementById('receipt'); r.href = receipt; r.style.display = 'inline-block';
+  }
+
+  var wa = document.getElementById('wa');
+  if (order) wa.href += encodeURIComponent(' Pedido: ' + order);
+
+  if (!tx) return; // sem dados da InfinitePay: não registra compra
+
+  // Evita registrar a mesma compra duas vezes (ex.: recarregar a página)
+  var key = 'ml360_purchase_' + tx;
+  try { if (localStorage.getItem(key)) return; } catch (e) {}
+
+  function registrar(valor, metodo) {
+    fbq('track', 'Purchase', { value: valor, currency: 'BRL', content_name: 'Memória Luz 360',
+      content_type: 'product', payment_method: metodo || '' }, { eventID: tx });
+    try { localStorage.setItem(key, '1'); } catch (e) {}
+  }
+  function valorPadrao() { return method === 'pix' ? PRECO_PIX : PRECO_CARTAO; }
+
+  // Confirma o pagamento com a InfinitePay antes de registrar
+  fetch('https://api.checkout.infinitepay.io/payment_check', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ handle: HANDLE, order_nsu: order, transaction_nsu: tx, slug: slug })
+  }).then(function (res) { return res.json(); })
+    .then(function (d) {
+      if (d && d.paid) {
+        var valor = d.amount ? d.amount / 100 : valorPadrao();
+        registrar(valor, d.capture_method || method);
+      }
+    })
+    .catch(function () {
+      // Se a verificação falhar (rede/CORS), registra com base nos parâmetros recebidos
+      if (slug) registrar(valorPadrao(), method);
+    });
+})();
+</script>
+</body>
+</html>
