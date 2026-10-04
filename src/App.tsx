@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
 
 const CHECKOUT_URL = "https://checkout.infinitepay.io/gabrielplucas-s1z?lenc=G54AAGTiXDeyxmihDTiqdAMZyCzqG_D5z18nB-yHpK2tFQdREnqgERfoxkp5cHd00YfF4uVlq1rmmkESlLqa4zndzU1i7DffBszU-VOnE_B4Smb4_WSuCoplB7ICtZiQF4fldTouiyvruMhlFvyx50_JqZbdAJxTLC0jYy1OWzVi.v1.883676e8a16ebce6";
 const WHATSAPP_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Acabei%20de%20comprar%20minha%20Mem%C3%B3ria%20Luz%20360%20e%20quero%20enviar%20minhas%204%20fotos%20para%20personaliza%C3%A7%C3%A3o.";
 const CONTACT_URL = "https://wa.me/5511973740613?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Mem%C3%B3ria%20Luz%20360%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida.";
-const DETAILS_VIDEO = "/memoria-luz-360.mp4";
-const DETAILS_POSTER = "/memoria-luz-360-poster.jpg";
+const DETAILS_VIDEO_PARTS = [
+  "/media/memoria-luz-360.0.b64",
+  "/media/memoria-luz-360.1.b64",
+];
 
 function ArrowIcon() {
   return (
@@ -22,6 +25,30 @@ function CheckIcon() {
 }
 
 function App() {
+  const [detailsVideo, setDetailsVideo] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    Promise.all(
+      DETAILS_VIDEO_PARTS.map(async (path) => {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`Falha ao carregar ${path}`);
+        return response.text();
+      }),
+    )
+      .then((parts) => {
+        if (active) setDetailsVideo(`data:video/mp4;base64,${parts.join("")}`);
+      })
+      .catch(() => {
+        // A capa permanece visível se a conexão não carregar o vídeo completo.
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <main>
       <style>{`
@@ -35,7 +62,7 @@ function App() {
         .trust-card p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.6; }
         .trust-note { max-width: 760px; margin: 26px auto 0; text-align: center; color: rgba(245,231,210,.52); font-size: .78rem; line-height: 1.55; }
         .details-video-shell { position: relative; width: 100%; aspect-ratio: 4 / 5; max-height: 760px; overflow: hidden; border-radius: 28px; border: 1px solid var(--line); background: #0d0907; box-shadow: 0 28px 60px rgba(0,0,0,.28); }
-        .details-video-shell::before { content: ""; position: absolute; inset: -32px; background: linear-gradient(rgba(8,5,3,.32), rgba(8,5,3,.54)), url('/memoria-luz-360-poster.jpg') center / cover; filter: blur(24px) saturate(.78); transform: scale(1.08); }
+        .details-video-shell::before { content: ""; position: absolute; inset: -32px; background: linear-gradient(rgba(8,5,3,.32), rgba(8,5,3,.54)), url('/memoria-luz-video-poster.jpg') center / cover; filter: blur(24px) saturate(.78); transform: scale(1.08); }
         .details-video-shell::after { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none; box-shadow: inset 0 0 52px rgba(0,0,0,.32); }
         .details-video { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: contain; background: transparent; }
 
@@ -151,18 +178,22 @@ function App() {
       <section className="details section-pad">
         <div className="details-image">
           <div className="details-video-shell">
-            <video
-              className="details-video"
-              src={DETAILS_VIDEO}
-              poster={DETAILS_POSTER}
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-              preload="metadata"
-              aria-label="Vídeo da Memória Luz 360 acesa e personalizada"
-            />
+            {detailsVideo ? (
+              <video
+                className="details-video"
+                src={detailsVideo}
+                poster="/memoria-luz-video-poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                preload="metadata"
+                aria-label="Vídeo da Memória Luz 360 acesa e personalizada"
+              />
+            ) : (
+              <img className="details-video" src="/memoria-luz-video-poster.jpg" alt="Memória Luz 360 acesa e personalizada" />
+            )}
           </div>
         </div>
         <div className="details-copy">
