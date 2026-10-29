@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Catálogo de Natal da Gabrielplucas3d: presentes e decoração feitos em impressão 3D.">
+<meta property="og:title" content="Catálogo de Natal · Gabrielplucas3d">
+<meta property="og:description" content="Presentes e decoração de Natal feitos em impressão 3D. Toque no produto e peça pelo WhatsApp.">
+<meta property="og:url" content="https://memorialuz360.com.br/natal/">
+<meta property="og:image" content="https://memorialuz360.com.br/natal/fotos/p07.jpg">
+<style>html,body{margin:0}img{max-width:100%;display:block}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Natal Gabrielplucas3d</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: red header band with cursive greeting, sticky category chips, 2→4 column product grid, product opens in a modal sheet */
+:root {
+  --cream: #FFF8EC;
+  --paper: #FFFFFF;
+  --photo: #F3E7D3;
+  --line: #EAD9BF;
+  --ink: #1E2A22;
+  --muted: #55605A;
+  --red: #B3202A;
+  --red-deep: #8E1A20;
+  --pine: #1F5135;
+  --gold: #F2C14E;
+  --f-script: 'Great Vibes', 'Brush Script MT', cursive;
+  --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--cream); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--cream); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Header */
+.hero { background: var(--red); color: var(--cream); position: relative; overflow: hidden; }
+.hero .wrap { padding-block: 28px 30px; display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 1; }
+.hero .store { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: .9; }
+.hero .script { font-family: var(--f-script); font-size: clamp(56px, 12vw, 96px); line-height: 1.05; color: var(--gold); margin: 4px 0 0; font-weight: 400; }
+.hero h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(22px, 4.4vw, 32px); line-height: 1.2; margin: 0; text-wrap: balance; }
+.hero p { margin: 6px 0 0; max-width: 34rem; color: #F8DCD6; }
+.hero .flakes { position: absolute; inset: 0; pointer-events: none; }
+.stripe { height: 14px; background: repeating-linear-gradient(-45deg, var(--cream) 0 12px, var(--red) 12px 24px, var(--cream) 24px 36px, var(--pine) 36px 48px); }
+
+/* Chips */
+.chips { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--cream); border-bottom: 1px solid var(--line); }
+.chips .wrap { display: flex; gap: 8px; overflow-x: auto; padding-block: 12px; scrollbar-width: none; }
+.chips .wrap::-webkit-scrollbar { display: none; }
+.chip { flex: none; font: 600 14px var(--f-body); color: var(--pine); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; min-height: 40px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--pine); color: var(--cream); border-color: var(--pine); }
+.chip:focus-visible, .card:focus-visible, .btn:focus-visible, .close:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+/* Grid */
+main .wrap { padding-block: 22px 32px; display: flex; flex-direction: column; gap: 30px; }
+.section h2 { font-family: var(--f-display); font-weight: 800; font-size: 26px; color: var(--pine); margin: 0 0 4px; }
+.section .kicker { font-family: var(--f-script); font-size: 30px; color: var(--red-deep); line-height: 1; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+@media (min-width: 700px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
+@media (min-width: 1000px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.card { display: flex; flex-direction: column; gap: 8px; text-align: left; font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 8px; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(30, 42, 34, .10); }
+.card .ph { aspect-ratio: 1 / 1; max-width: 100%; border-radius: 10px; background: var(--photo); overflow: hidden; display: grid; place-items: center; }
+.card img { width: 100%; height: 100%; object-fit: contain; }
+.card .info { display: flex; flex-direction: column; gap: 2px; padding: 0 4px 4px; min-width: 0; }
+.card .name { font-weight: 700; font-size: 15px; line-height: 1.25; }
+.card .sub { font-size: 12.5px; color: var(--muted); }
+.tag { align-self: flex-start; margin-top: 6px; background: var(--red); color: #fff; border-radius: 4px 14px 14px 4px; padding: 4px 12px 4px 9px; font-family: var(--f-display); font-weight: 800; font-size: 16px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* How to buy */
+.buy { background: var(--pine); color: var(--cream); }
+.buy .wrap { padding-block: 30px calc(30px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.buy h2 { font-family: var(--f-script); font-weight: 400; font-size: 46px; color: var(--gold); margin: 0; line-height: 1; grid-column: 1 / -1; }
+.buy .item { display: flex; flex-direction: column; gap: 4px; }
+.buy .label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #CFE0D5; }
+.buy .val { font-size: 17px; font-weight: 600; }
+
+/* Dialog */
+dialog { border: 0; padding: 0; width: min(560px, calc(100% - 24px)); max-height: calc(100% - 24px); border-radius: 18px; background: var(--paper); color: var(--ink); overflow: auto; }
+dialog::backdrop { background: rgba(20, 28, 23, .6); }
+.sheet { display: flex; flex-direction: column; }
+.sheet .big { position: relative; background: var(--photo); aspect-ratio: 1 / 1; max-width: 100%; }
+.sheet .big img { width: 100%; height: 100%; object-fit: contain; }
+.close { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, .92); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.sheet .body { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 10px; }
+.sheet .cat { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red-deep); }
+.sheet h3 { font-family: var(--f-display); font-weight: 800; font-size: 28px; line-height: 1.15; margin: 0; color: var(--ink); text-wrap: balance; }
+.sheet .desc { margin: 0; color: #34403A; }
+.sheet ul { margin: 0; padding-left: 20px; color: #34403A; display: flex; flex-direction: column; gap: 3px; }
+.sheet .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 6px; }
+.sheet .price { font-family: var(--f-display); font-weight: 800; font-size: 30px; color: var(--red); font-variant-numeric: tabular-nums; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 20px; border-radius: 999px; background: var(--pine); color: var(--cream); font: 700 16px var(--f-body); text-decoration: none; flex: 1 1 220px; }
+.btn:hover { background: #17402A; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="flakes" aria-hidden="true" viewBox="0 0 400 200" preserveAspectRatio="xMaxYMid slice" fill="none" stroke="#C83A40" stroke-width="2" stroke-linecap="round">
+    <g transform="translate(340 60)"><path d="M0 -26v52M-26 0h52M-18 -18l36 36M18 -18l-36 36M0 -26l-5 5M0 -26l5 5M0 26l-5 -5M0 26l5 -5M-26 0l5 -5M-26 0l5 5M26 0l-5 -5M26 0l-5 5"/></g>
+    <g transform="translate(280 150)"><path d="M0 -14v28M-14 0h28M-10 -10l20 20M10 -10l-20 20"/></g>
+    <g transform="translate(380 165)"><path d="M0 -10v20M-10 0h20M-7 -7l14 14M7 -7l-14 14"/></g>
+  </svg>
+  <div class="wrap">
+    <span class="store">Gabrielplucas3d · Natal 2026</span>
+    <p class="script">Feliz Natal</p>
+    <h1>Presentes e decoração feitos em impressão 3D</h1>
+    <p>Toque num produto para ver a foto grande e fazer o pedido pelo WhatsApp.</p>
+  </div>
+</header>
+<div class="stripe" aria-hidden="true"></div>
+
+<nav class="chips" aria-label="Categorias">
+  <div class="wrap" id="chips"></div>
+</nav>
+
+<main>
+  <div class="wrap" id="list"></div>
+</main>
+
+<section class="buy" aria-labelledby="buy-title">
+  <div class="wrap">
+    <h2 id="buy-title">Como comprar</h2>
+    <div class="item"><span class="label">Pedido</span><span class="val">Escolha o produto e toque em "Pedir no WhatsApp"</span></div>
+    <div class="item"><span class="label">Pagamento</span><span class="val">Pix ou cartão (com o acréscimo da maquininha)</span></div>
+    <div class="item"><span class="label">Prazo de entrega</span><span class="val">Combinado na hora da compra</span></div>
+    <div class="item"><span class="label">WhatsApp</span><span class="val" style="user-select: all">(11) 97374-0613</span></div>
+    <div class="item"><span class="label">Instagram</span><span class="val">@gabrielplucas3d</span></div>
+  </div>
+</section>
+
+<dialog id="dlg" aria-labelledby="d-name">
+  <div class="sheet">
+    <div class="big">
+      <img id="d-img" alt="">
+      <button class="close" id="d-close" type="button" aria-label="Fechar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="body">
+      <span class="cat" id="d-cat"></span>
+      <h3 id="d-name"></h3>
+      <p class="desc" id="d-desc"></p>
+      <ul id="d-items" hidden></ul>
+      <div class="row">
+        <span class="price" id="d-price"></span>
+        <a class="btn" id="d-wa" href="#" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+          Pedir no WhatsApp
+        </a>
+      </div>
+      <p class="note">Se o WhatsApp não abrir, chame no (11) 97374-0613.</p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const WA = '5511973740613';
+const CATS = [
+  { id: 'kits', name: 'Kits de Natal', kicker: 'Presentes prontos' },
+  { id: 'especiais', name: 'Peças especiais', kicker: 'Para encantar' },
+  { id: 'enfeites', name: 'Enfeites e decoração', kicker: 'Coleção de Natal' },
+  { id: 'bonecos', name: 'Bonequinhos e árvores', kicker: 'Fofura de Natal' },
+  { id: 'mesa', name: 'Mesa e decoração', kicker: 'Ceia e presépio' },
+  { id: 'personalizados', name: 'Personalizados e placas', kicker: 'Com o seu nome' }
+];
+const P = [
+  { id: 'vila-completa', cat: 'kits', name: 'Vila de Natal Completa', sub: 'Todas as peças da foto', price: 75, img: 'p07', items: ['Casa, igreja e sobrado', 'Papai Noel, rena e boneco de neve', 'Criança, poste e pinheiro', 'Poço dos desejos'] },
+  { id: 'presepio-nevado', cat: 'kits', name: 'Kit Presépio Nevado', sub: 'Árvore, presépio e 3 renas', price: 90, img: 'p33' },
+  { id: 'bandeja-sagrada', cat: 'kits', name: 'Bandeja Sagrada Família', sub: 'Bandeja, árvore e presépio', price: 60, img: 'p09' },
+  { id: 'petisqueiras', cat: 'kits', name: 'Kit Petisqueiras', sub: '6 árvores, vermelhas e verdes', price: 40, img: 'p04' },
+  { id: 'calendario', cat: 'especiais', name: 'Calendário do Advento Lareira', sub: '24 gavetinhas até o Natal', price: 90, img: 'p14', items: ['24 gavetinhas numeradas, uma por dia até o Natal', 'Chaminé de tijolinhos com Papai Noel no topo', 'Lareira com meias penduradas'] },
+  { id: 'poste', cat: 'especiais', name: 'Poste Luminoso', sub: 'Placa "Merry Christmas"', price: 200, img: 'p15' },
+  { id: 'arvore-luminaria', cat: 'especiais', name: 'Árvore Luminária', sub: 'Vazada, com rena', price: 40, img: 'p31' },
+  { id: 'vila-iluminada', cat: 'especiais', name: 'Vila Iluminada', sub: '5 casinhas com igreja', price: 75, img: 'p17' },
+  { id: 'noel-trico', cat: 'enfeites', name: 'Papai Noel Tricô', sub: 'Efeito de tricô', price: 15, img: 'p01' },
+  { id: 'gengibre', cat: 'enfeites', name: 'Boneco de Gengibre', sub: 'Efeito de tricô', price: 10, img: 'p05' },
+  { id: 'arvore-nordica', cat: 'enfeites', name: 'Árvore Nórdica', sub: 'Com estrela · unidade', price: 20, img: 'p03' },
+  { id: 'rena-decorativa', cat: 'enfeites', name: 'Rena Decorativa', sub: 'Estilo lapidado', price: 20, img: 'p13' },
+  { id: 'treno', cat: 'enfeites', name: 'Trenó com Rena', sub: 'Serve de centro de mesa', price: 30, img: 'p08' },
+  { id: 'vila-nevada', cat: 'enfeites', name: 'Vila Nevada', sub: 'Casinhas e pinheiros', price: 50, img: 'p06' },
+  { id: 'turma-canelada', cat: 'bonecos', name: 'Turma Canelada', sub: 'Kit com os 4 bonequinhos', price: 35, img: 'p16' },
+  { id: 'trio-inverno', cat: 'bonecos', name: 'Trio de Inverno', sub: 'Kit com as 3 peças', price: 30, img: 'p27' },
+  { id: 'rena-trico', cat: 'bonecos', name: 'Rena Tricô', sub: 'Efeito de tricô · unidade', price: 15, img: 'p20' },
+  { id: 'quebra-nozes', cat: 'bonecos', name: 'Quebra-nozes', sub: 'Liso ou canelado · unidade', price: 25, img: 'p22' },
+  { id: 'arvore-plissada', cat: 'bonecos', name: 'Árvore Plissada', sub: 'Com estrela · unidade', price: 20, img: 'p19' },
+  { id: 'jesus', cat: 'bonecos', name: 'Jesus Sentadinho', sub: 'Para monitor ou prateleira', price: 20, img: 'p25' },
+  { id: 'placa-feliz-natal', cat: 'mesa', name: 'Placa Feliz Natal', sub: 'Com floco de neve', price: 20, img: 'p02' },
+  { id: 'presepio-estrela', cat: 'mesa', name: 'Presépio Estrela', sub: 'José, Maria e Jesus', price: 20, img: 'p12' },
+  { id: 'porta-guardanapo', cat: 'mesa', name: 'Porta-guardanapo Árvore', sub: 'Vazado, com estrela', price: 15, img: 'p10' },
+  { id: 'quebra-nozes-rose', cat: 'mesa', name: 'Quebra-nozes Rosé', sub: 'Estilo lapidado', price: 30, img: 'p32' },
+  { id: 'anel-feliz-natal', cat: 'mesa', name: 'Anel Feliz Natal', sub: 'Para guardanapo · unidade', price: 5, img: 'p11' },
+  { id: 'anel-floco', cat: 'mesa', name: 'Anel Floco de Neve', sub: 'Para guardanapo · unidade', price: 5, img: 'p29' },
+  { id: 'arvore-familia', cat: 'personalizados', name: 'Árvore da Família', sub: 'Com os nomes que você quiser', price: 35, img: 'p24' },
+  { id: 'bola-nome', cat: 'personalizados', name: 'Bola com Nome', sub: 'Para pendurar na árvore', price: 5, img: 'p23' },
+  { id: 'guirlanda-foto', cat: 'personalizados', name: 'Guirlanda com Foto', sub: 'Envie a sua foto', price: 5, img: 'p18' },
+  { id: 'placa-presepio', cat: 'personalizados', name: 'Placa Presépio', sub: '"Feliz Natal" com presépio', price: 25, img: 'p26' },
+  { id: 'ore-confie', cat: 'personalizados', name: 'Placa "Ore e Confie"', sub: 'Para mesa ou estante', price: 30, img: 'p28' },
+  { id: 'frase-parede', cat: 'personalizados', name: 'Frase de Parede', sub: 'Provérbios 16:3', price: 50, img: 'p21' }
+];
+
+const brl = n => 'R$ ' + n.toFixed(2).replace('.', ',');
+const src = p => 'fotos/' + p.img + '.jpg';
+const el = (tag, attrs = {}, kids = []) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'text') e.textContent = v; else if (k.startsWith('on')) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v);
+  }
+  kids.forEach(c => e.append(c));
+  return e;
+};
+
+let filter = 'todos';
+try { const f = localStorage.getItem('natal-filtro'); if (f && (f === 'todos' || CATS.some(c => c.id === f))) filter = f; } catch (e) {}
+
+function renderChips() {
+  const box = document.getElementById('chips');
+  box.replaceChildren();
+  [{ id: 'todos', name: 'Todos' }, ...CATS].forEach(c => {
+    box.append(el('button', { class: 'chip', type: 'button', 'aria-pressed': String(filter === c.id), text: c.name, onclick: () => {
+      filter = c.id;
+      try { localStorage.setItem('natal-filtro', filter); } catch (e) {}
+      renderChips(); renderList();
+      window.scrollTo({ top: document.querySelector('main').offsetTop - 60, behavior: 'smooth' });
+    } }));
+  });
+}
+
+function card(p) {
+  return el('button', { class: 'card', type: 'button', 'aria-label': p.name + ', ' + brl(p.price) + '. Ver detalhes', onclick: () => openProduct(p.id) }, [
+    el('div', { class: 'ph' }, [el('img', { src: src(p), alt: p.name, loading: 'lazy' })]),
+    el('div', { class: 'info' }, [
+      el('span', { class: 'name', text: p.name }),
+      el('span', { class: 'sub', text: p.sub }),
+      el('span', { class: 'tag', text: brl(p.price) })
+    ])
+  ]);
+}
+
+function renderList() {
+  const list = document.getElementById('list');
+  list.replaceChildren();
+  CATS.filter(c => filter === 'todos' || c.id === filter).forEach(c => {
+    const grid = el('div', { class: 'grid' }, P.filter(p => p.cat === c.id).map(card));
+    list.append(el('section', { class: 'section', 'aria-label': c.name }, [
+      el('span', { class: 'kicker', text: c.kicker }),
+      el('h2', { text: c.name }),
+      grid
+    ]));
+  });
+}
+
+const dlg = document.getElementById('dlg');
+function openProduct(id) {
+  const p = P.find(x => x.id === id);
+  if (!p) return;
+  const c = CATS.find(x => x.id === p.cat);
+  document.getElementById('d-img').src = src(p);
+  document.getElementById('d-img').alt = p.name;
+  document.getElementById('d-cat').textContent = c.name;
+  document.getElementById('d-name').textContent = p.name;
+  document.getElementById('d-desc').textContent = p.sub;
+  const ul = document.getElementById('d-items');
+  ul.replaceChildren(...(p.items || []).map(t => el('li', { text: t })));
+  ul.hidden = !p.items;
+  document.getElementById('d-price').textContent = brl(p.price);
+  const msg = 'Olá! Vi o catálogo de Natal e quero o ' + p.name + ' (' + brl(p.price) + ').';
+  document.getElementById('d-wa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+  if (location.hash !== '#' + p.id) history.replaceState(null, '', '#' + p.id);
+  if (!dlg.open) dlg.showModal();
+}
+function closeProduct() {
+  if (dlg.open) dlg.close();
+}
+dlg.addEventListener('close', () => { if (location.hash) history.replaceState(null, '', location.pathname + location.search); });
+dlg.addEventListener('click', e => { if (e.target === dlg) closeProduct(); });
+document.getElementById('d-close').addEventListener('click', closeProduct);
+function fromHash() {
+  const id = location.hash.slice(1);
+  if (id && P.some(p => p.id === id)) openProduct(id); else closeProduct();
+}
+window.addEventListener('hashchange', fromHash);
+
+renderChips();
+renderList();
+fromHash();
+</script>
+</body>
+</html>
